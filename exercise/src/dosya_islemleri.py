@@ -7,9 +7,9 @@ def read_csv(path):
     with Path(path).open("r", encoding="utf-8",newline="") as f:
         return list(csv.DictReader(f)) # her satırı bir listeye atar
 
-@required_column
+@required_column({"name","age","city"})
 @timer
-def write_json(path, obj):
+def write_json(path, obj, **kwargs):
     with Path(path).open("w",encoding="utf-8") as f:
         json.dump(obj,f)
 

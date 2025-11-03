@@ -12,9 +12,9 @@ def build_report(st:dict)->str:
     lines=[]
     lines.append("Rapor")
     lines.append("")
-    lines.append("Geçerli kayıt sayısı:", st["count"])
-    lines.append("ortalama yaş:", st["avg_age"])
+    lines.append(f"Geçerli kayıt sayısı: {st['count']}")
+    lines.append(f"ortalama yaş: {st['avg_age']}")
     lines.append("Şehir dağılımı:")
     for c,n in st["by_city"].items():
-        lines.append(c,":",n)
+        lines.append(f"{c}: {n}")
     return  "\n".join(lines) +"\n"

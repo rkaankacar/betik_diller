@@ -1,0 +1,10 @@
+Rapor
+
+Geçerli kayıt sayısı: 6
+ortalama yaş: 25.0
+Şehir dağılımı:
+Trabzon: 2
+İstanbul: 1
+Ankara: 1
+İzmir: 1
+Samsun: 1

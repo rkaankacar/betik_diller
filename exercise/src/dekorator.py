@@ -1,5 +1,6 @@
 from functools import wraps
 import time
+import csv
 
 def timer(func):
     @wraps(func)
@@ -13,19 +14,36 @@ def timer(func):
 
 
 def required_column(requireds: set[str]):
-    def deco(func):
+
+    def decorator(func):
         @wraps(func)
-        def wrapper(rows, *args,**kwargs):
-            if not rows:
-                raise ValueError("Boş veri seti")
-            keys= set(rows[0].keys)
-            missing=requireds-keys
-            if missing:
-                raise ValueError("Eksik kolon")
-            return func(rows,*args,**kwargs)
+        def wrapper(*args, **kwargs):
+            
+            if requireds:
+                
+                rows = kwargs.get("rows", None)
+                if rows is None and args:
+                    rows = args[0]
+
+                if not rows:
+                    raise ValueError("Boş veri seti")
+
+                try:
+                    keys = set(rows[0].keys())
+                except Exception:
+                    raise TypeError("rows, sözlüklerden oluşan bir liste olmalı")
+
+                missing = set(requireds) - keys
+                if missing:
+                    raise ValueError(f"Eksik kolonlar: {missing}")
+
+            return func(*args, **kwargs)
         return wrapper
-    return deco
+    if callable(requireds):
+        func = requireds
+        requireds = None
+        return decorator(func)
+
+    return decorator
         
                 
-
-
