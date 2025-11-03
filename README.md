@@ -1,3 +1,3 @@
-![consol](consol.png)
-![json](json.png)
-![text](txt.png)
+![consol](images/consol.png)
+![json](images/json.png)
+![text](images/txt.png)
